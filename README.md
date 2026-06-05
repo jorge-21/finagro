@@ -32,6 +32,27 @@ Los notebooks corren en Colab y leen sus insumos **por nombre de archivo pelado*
 
 ---
 
+## Puesta en marcha — clonar el repo y subirlo a Drive
+
+Los notebooks fueron escritos para **Google Colab** y bajan sus propios insumos (vía `gdown` desde Drive, la API de Socrata o URLs públicas de Finagro), así que **cada uno corre de forma independiente** — no hay que ejecutarlos en orden para que funcionen.
+
+**1. Clonar el repositorio** en tu máquina:
+
+```bash
+git clone https://github.com/jorge-21/finagro.git
+cd finagro
+```
+
+**2. Subir el repo a Google Drive.** Para abrir los notebooks en Colab, copia la carpeta `finagro/` (al menos `notebooks/`, `data/` y `docs/`) a tu Google Drive — por ejemplo a `MyDrive/finagro/`. Puedes hacerlo arrastrando la carpeta en [drive.google.com](https://drive.google.com), o con [Google Drive para escritorio](https://www.google.com/drive/download/) si lo tienes sincronizado.
+
+> Los datasets multi-GB **no** vienen en el repo (exceden el límite de GitHub). No hace falta subirlos: los notebooks los re-descargan solos con los Drive IDs documentados en [`data/README.md`](data/README.md).
+
+**3. Abrir y correr en Colab.** Desde Drive, haz clic derecho sobre el `.ipynb` → *Abrir con* → *Google Colaboratory*, y dale *Entorno de ejecución → Ejecutar todo*. La primera celda baja los insumos; el resto corre de seguido.
+
+> **Token de Socrata:** solo [`notebooks/0_ingesta/Ingesta_SFC.ipynb`](notebooks/0_ingesta/Ingesta_SFC.ipynb) requiere credencial — define la variable de entorno `SOCRATA_APP_TOKEN` antes de correrlo (ver [CLAUDE.md](CLAUDE.md)). Los demás notebooks no necesitan token.
+
+---
+
 ## 0. Consolidación de datos (prerrequisito)
 
 **Notebook:** [`notebooks/1_consolidacion/Consolidación_Finagro_y_SFC.ipynb`](notebooks/1_consolidacion/Consolidación_Finagro_y_SFC.ipynb)
