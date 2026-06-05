@@ -27,7 +27,7 @@ los IDs de abajo. Los esquemas completos de columnas viven en
 | `datos_procesados (1).csv` | 1.55 GB | ❌ descarga | `notebooks/0_ingesta/Ingesta_SFC.ipynb` | `1pqULCPNUfiZ1H9bvtahu2gJOBbHPnVMr` |
 | `microcredito.csv` | 1.28 GB | ❌ descarga | `notebooks/0_ingesta/Ingesta_SFC.ipynb` | — |
 | `microcredito.xlsx` | 1.99 MB | ✅ | versión muestreada/antigua del microcrédito | — |
-| `tasas_banrep_semanal.csv` | 0.05 MB | ✅ | `notebooks/0_ingesta/Ingesta_BanRep.ipynb` | — |
+| `tasas_banrep_semanal.csv` | 0.05 MB | ✅ | `notebooks/0_ingesta/Ingesta_BanRep.ipynb` | `1GGsdRufXrUE651qFNEeTEepRJnDDK3B3` |
 
 Para descargar los grandes:
 
@@ -36,3 +36,22 @@ pip install gdown
 gdown 1KMwal7BjIhbOV2k4UC1duRqQXrEM5Gxi -O "data/processed/dataset_finagro.csv"
 gdown 1pqULCPNUfiZ1H9bvtahu2gJOBbHPnVMr -O "data/processed/datos_procesados (1).csv"
 ```
+
+## IDs auxiliares de Drive (hoy solo dentro de los notebooks)
+
+Estos insumos no son salidas del pipeline pero los notebooks los bajan con
+`gdown` en Colab. Se documentan aquí para que el grafo de datos tenga **una sola
+fuente de verdad** y no haya que abrir cada notebook para reconstruirlo. Versiones
+equivalentes de `ibr`/`dtf` viven además en `raw/` (mismos datos, distinto formato).
+
+| Insumo | Usado por | Drive ID |
+|---|---|---|
+| `divipola.xlsx` (DIVIPOLA municipios) | `Ingesta_Finagro.ipynb`, `Ingesta_SFC.ipynb` | `17nXNQBaf2gi1O9ODFOtBUg_cR0j7s4rS` |
+| `ibr.csv` (insumo IBR) | `Ingesta_Finagro.ipynb` | `1Mciuo3swfSSoyWhJ3QZfnKzxeZzWYeUw` |
+| `dtf.csv` (insumo DTF) | `Ingesta_Finagro.ipynb` | `10PwPBPrEAjLtAGKqVQJ1rx-ov0UPtZYC` |
+
+> **Nota de reproducibilidad:** las ingestas de Finagro y BanRep escriben su salida
+> a rutas personales de Drive (`/content/drive/MyDrive/U/Maestría/...` y
+> `/MyDrive/finagro/...`). Por eso re-correr una ingesta no actualiza por sí solo
+> el archivo que los notebooks de aguas abajo bajan por ID — para otra persona el
+> pipeline solo es reproducible de lectura (vía los IDs de arriba), no de escritura.
